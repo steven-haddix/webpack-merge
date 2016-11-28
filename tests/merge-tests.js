@@ -136,7 +136,7 @@ function mergeTests(merge) {
     assert.deepEqual(a, aClone);
   });
 
-  it('should not mutate inputs', function () {
+  it('should not mutate inputs when mismatched keys', function () {
     const a = {
       entry: {}
     };
@@ -147,7 +147,7 @@ function mergeTests(merge) {
     const aClone = JSON.parse(JSON.stringify(a));
     const config = merge({}, a, b);
 
-    config.entry['main'] = 'src/index.js'
+    config.entry.main = 'src/index.js';
 
     assert.deepEqual(a, aClone);
   });
