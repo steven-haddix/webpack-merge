@@ -136,6 +136,22 @@ function mergeTests(merge) {
     assert.deepEqual(a, aClone);
   });
 
+  it('should not mutate inputs', function () {
+    const a = {
+      entry: {}
+    };
+
+    const b = {
+    };
+
+    const aClone = JSON.parse(JSON.stringify(a));
+    const config = merge({}, a, b);
+
+    config.entry['main'] = 'src/index.js'
+
+    assert.deepEqual(a, aClone);
+  });
+
   it('should allow overriding with an empty array', function () {
     const a = {
       entry: ['foo']
